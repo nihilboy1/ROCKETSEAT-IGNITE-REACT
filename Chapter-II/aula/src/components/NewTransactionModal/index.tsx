@@ -4,8 +4,7 @@ import incomeImg from '../../assets/Entradas.svg'
 import outcomeImg from '../../assets/Saidas.svg'
 import * as S from './style'
 import { FormEvent, useContext, useState } from 'react'
-import { api } from '../../services/api'
-import { TransactionsContext } from '../../TransactionsContext'
+import { useTransactions } from '../../hooks/useTransactions'
 
 Modal.setAppElement('#root')
 interface NewTransactionModalProps {
@@ -22,16 +21,21 @@ export function NewTransactionModal({
   const [title, setTitle] = useState('')
   const [category, setCategory] = useState('')
 
-  const { createTransactions } = useContext(TransactionsContext)
+  const { createTransactions } = useTransactions()
 
-  function handleCreateNewTransaction(e: FormEvent) {
+  async function handleCreateNewTransaction(e: FormEvent) {
     e.preventDefault()
-    createTransactions({
+    await createTransactions({
       title,
       category,
       amount,
       type
     })
+    onRequestClose()
+    setAmount(0)
+    setCategory('')
+    setType("deposit")
+    setTitle('')
   }
 
   return (

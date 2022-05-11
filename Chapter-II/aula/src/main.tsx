@@ -6,7 +6,7 @@ import { createServer, Model } from 'miragejs'
 
 createServer({
   models: {
-    transactions: Model
+    transaction: Model
   },
 
   seeds(server) {
@@ -42,12 +42,12 @@ createServer({
   routes() {
     this.namespace = 'api'
     this.get('/transactions', () => {
-      return this.schema.all('transactions')
+      return this.schema.all('transaction')
     })
     this.post('/transactions', (schema, req) => {
       const data = JSON.parse(req.requestBody)
 
-      return schema.create('transactions', data)
+      return schema.create('transaction', data)
     })
   }
 })

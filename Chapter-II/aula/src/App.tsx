@@ -2,8 +2,7 @@ import { Dashboard } from './components/Dashboard'
 import { Header } from './components/Header'
 import { useState } from 'react'
 import { NewTransactionModal } from './components/NewTransactionModal'
-import {TransactionsProvider } from './TransactionsContext'
-
+import { TransactionsProvider } from './hooks/useTransactions'
 
 function App() {
   const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] =
@@ -19,7 +18,10 @@ function App() {
     <TransactionsProvider>
       <Header onOpenNewTransactionModal={handleOpenNewTransactionModal} />
       <Dashboard />
-      <NewTransactionModal isOpen={isNewTransactionModalOpen} onRequestClose={handleCloseNewTransactionModal}/>
+      <NewTransactionModal
+        isOpen={isNewTransactionModalOpen}
+        onRequestClose={handleCloseNewTransactionModal}
+      />
     </TransactionsProvider>
   )
 }
