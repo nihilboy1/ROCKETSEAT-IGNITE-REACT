@@ -9,6 +9,7 @@
 
   --grey-100: #e1e1e6;
   --grey-300: #a8a8b3;
+  --grey-700: #323238;
   --grey-800: #29292e;
   --grey-850: #1f2729;
   --grey-900: #121214;
@@ -18,13 +19,13 @@
 }
 
 @media (max-width: 1080px) {
-  html{
+  html {
     font-size: 93.75%;
   }
 }
 
 @media (max-width: 768px) {
-  html{
+  html {
     font-size: 87.5%;
   }
 }
