@@ -42,10 +42,10 @@ export function App() {
       <div className={S.wrapper}>
         <Sidebar />
         <main>
-          {posts.map((post, index) => {
+          {posts.map((post) => {
             return (
               <PostComponent
-                key={index}
+                key={post.id}
                 author={post.author}
                 content={post.content}
                 publishedAt={post.publishedAt}
