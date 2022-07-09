@@ -1,0 +1,14 @@
+.container {
+  width: 200px;
+  height: 150px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid
+
+}
+
+.container > * {
+  border: 1px solid;
+}
