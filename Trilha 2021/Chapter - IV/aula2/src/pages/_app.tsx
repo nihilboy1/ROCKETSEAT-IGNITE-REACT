@@ -1,7 +1,7 @@
-import { AppProps } from 'next/app'
-import { AuthProvider } from '../contexts/AuthContext'
-import '../styles/globals.css'
-function MyApp({ Component, pageProps }: AppProps) {
+import '../styles/global.scss';
+import { AuthProvider } from '../context/AuthContext';
+
+function MyApp({ Component, pageProps }) {
   return (
     <AuthProvider>
       <Component {...pageProps} />
