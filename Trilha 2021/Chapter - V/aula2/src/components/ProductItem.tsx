@@ -6,12 +6,20 @@ interface ProductItemProps {
     price: number
     title: string
   }
+  onAddToWishList: (id: number) => void
 }
 
-function ProductItemComponent({ product }: ProductItemProps) {
+function ProductItemComponent({ product, onAddToWishList }: ProductItemProps) {
   return (
     <div>
       {product.title} - <strong>{product.price}</strong>
+      <button
+        onClick={() => {
+          onAddToWishList(product.id)
+        }}
+      >
+        Add to wishlist
+      </button>
     </div>
   )
 }
@@ -41,7 +49,6 @@ o ideal é passar como segundo parametro para o memo(), uma função, que recebe
 o estado futuro das props em questão, para que eu possa fazer a comparação de um objeto que ela contenha. 
 Se houver alteração, ele atualiza o componente, se não, ele passa
 */
-
 
 // Quando utilizar?
 

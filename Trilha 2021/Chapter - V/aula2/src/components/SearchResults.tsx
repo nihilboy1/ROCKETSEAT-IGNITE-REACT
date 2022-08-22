@@ -7,6 +7,8 @@ interface SearchResultsProps {
     price: number
     title: string
   }>
+
+  onAddToWishList: (id: number) => void
 }
 
 /* 
@@ -19,12 +21,10 @@ o useMemo() evita que alguma tarefa pesada, de dentro do componente, seja refeit
 (usando o useMemo nessa segunda situação, eu evito que o react tente comparar essas duas variaveis que são iguais, mas que são diferentes pelo aspecto referencial, de espaço na memória)
 */
 
-
-
-
-
-
-export function SearchResults({ results }: SearchResultsProps) {
+export function SearchResults({
+  results,
+  onAddToWishList
+}: SearchResultsProps) {
   const totalPrice = useMemo(() => {
     return results.reduce((total, product) => {
       return total + product.price
@@ -33,7 +33,7 @@ export function SearchResults({ results }: SearchResultsProps) {
   return (
     <div>
       {results.map(product => {
-        return <ProductItem product={product} />
+        return <ProductItem key={product.id} onAddToWishList={onAddToWishList} product={product} />
       })}
     </div>
   )
