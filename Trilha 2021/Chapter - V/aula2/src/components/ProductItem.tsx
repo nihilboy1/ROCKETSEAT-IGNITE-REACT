@@ -1,4 +1,24 @@
-import { memo } from 'react'
+import { memo, useState } from 'react'
+import { AddProductToWishlistProps } from './AddProductToWishList'
+// import { AddProductToWishlist } from './AddProductToWishList'
+import dynamic from 'next/dynamic'
+
+const AddProductToWishlist = dynamic<AddProductToWishlistProps>(
+  () => {
+    return import('./AddProductToWishList').then(
+      mod => mod.AddProductToWishlist
+    )
+  },
+  {
+    loading: () => <span>loading...</span>
+  }
+)
+
+/*
+a importação dinamica, ou "lazy loading", serve para ser utilizada em componentes que não serão visualizados 
+imediatasmente na página. Por exemplo, um modal que só é exibido se o usuário fizer ação X. 
+Nesse caso, aplicasse o dynamic import
+*/
 
 interface ProductItemProps {
   product: {
@@ -10,16 +30,23 @@ interface ProductItemProps {
 }
 
 function ProductItemComponent({ product, onAddToWishList }: ProductItemProps) {
+  const [isAddingToWishlist, setIsAddingToWishlist] = useState(false)
   return (
     <div>
       {product.title} - <strong>{product.price}</strong>
-      <button
-        onClick={() => {
-          onAddToWishList(product.id)
-        }}
-      >
-        Add to wishlist
+      <button onClick={() => setIsAddingToWishlist(true)}>
+        Adicionar aos favoritos
       </button>
+      {isAddingToWishlist && (
+        <AddProductToWishlist
+          onRequestClose={() => {
+            setIsAddingToWishlist(false)
+          }}
+          onAddToWishlist={() => {
+            onAddToWishList(product.id)
+          }}
+        />
+      )}
     </div>
   )
 }
