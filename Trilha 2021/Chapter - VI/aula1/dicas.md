@@ -1,0 +1,1 @@
+1. Nem todo componente precisa de um teste. O ideal é aplicar testes em componentes que tenham algum tipo de interação com o usuário
