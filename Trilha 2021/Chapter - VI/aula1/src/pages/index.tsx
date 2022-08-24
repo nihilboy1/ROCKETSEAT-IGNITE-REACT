@@ -27,7 +27,7 @@ export default function Home({ product }: IProduct) {
           </h1>
           <p>
             Get access to all the publications <br />
-            <span>{product.amount} </span>
+            <span>for {product.amount} month</span>
           </p>
           <SubscribeButton  />
         </section>
