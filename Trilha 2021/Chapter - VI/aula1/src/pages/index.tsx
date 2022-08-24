@@ -8,7 +8,7 @@ import S from "./home.module.scss";
 interface IProduct {
   product: {
     priceId: string;
-    amount: number;
+    amount: string;
   };
 }
 
@@ -27,9 +27,9 @@ export default function Home({ product }: IProduct) {
           </h1>
           <p>
             Get access to all the publications <br />
-            <span>for {product.amount} month</span>
+            <span>{product.amount} </span>
           </p>
-          <SubscribeButton priceId={product.priceId} />
+          <SubscribeButton  />
         </section>
         <img src="/images/avatar.svg" alt="coding girl" />
       </main>
