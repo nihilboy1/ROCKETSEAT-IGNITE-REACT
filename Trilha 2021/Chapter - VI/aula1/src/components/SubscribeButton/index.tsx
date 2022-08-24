@@ -4,11 +4,8 @@ import { api } from '../../services/api'
 import { getStripeJs } from '../../services/stripe-js'
 import { useRouter } from 'next/router'
 
-interface SubscrbeButtonProps {
-  priceId: string
-}
 
-export function SubscribeButton({ priceId }: SubscrbeButtonProps) {
+export function SubscribeButton() {
   const { data: session } = useSession()
   const router = useRouter()
 
