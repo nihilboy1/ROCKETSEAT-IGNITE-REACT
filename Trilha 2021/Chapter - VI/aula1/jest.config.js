@@ -7,5 +7,13 @@ module.exports = {
   }, // extensões de arquivos que devem ser transformadas durante o processo
   moduleNameMapper: {
     '\\.(scss|css|sass)$': 'identity-obj-proxy'
-  } // serve para fazer parse dos módulos de estilo importados dentro dos componentes
+  }, // serve para fazer parse dos módulos de estilo importados dentro dos componentes
+  collectCoverage: true,
+  collectCoverageFrom: [
+    'src/**/*.tsx',
+    '!src/**/*.spec. tsx',
+    '!src/**/_app.tsx',
+    '!src/**/_app.tsx'
+  ],
+  coverageReporters: ['lcov', 'json']
 }

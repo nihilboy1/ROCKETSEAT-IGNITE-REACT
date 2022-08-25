@@ -1,8 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import { getStaticProps } from '../../pages'
-import Post from '../../pages/posts/preview/[slug]'
+import Post, { getStaticProps } from '../../pages/posts/preview/[slug]'
 import { getPrismicClient } from '../../services/prismic'
 
 const post = {
@@ -53,44 +52,35 @@ describe('Post preview page', () => {
   })
 
   it('loads initial data', async () => {
-    const getPrismicClientMocked = jest.mocked(getPrismicClient)
+    const getPrismicClientMocked = jest.mocked(getPrismicClient);
 
     getPrismicClientMocked.mockReturnValueOnce({
-      getByUID: jest.fn().mockResolvedValueOnce({
-        data: {
-          title: [
-            {
-              type: 'heading',
-              text: 'My new post'
-            }
-          ],
-          content: [
-            {
-              type: 'paragraph',
-              text: 'Post content'
-            }
-          ]
+        getByUID: jest.fn().mockResolvedValueOnce({
+           data: {
+            title: [
+                {type: 'heading', text: 'My new post'}
+            ],
+            content: [
+                { type: 'paragraph', text: 'Post content'}
+            ],
         },
-        last_publication_date: "04-01-2021"
-      })
-    } as any)
+        last_publication_date: '01-01-2021'
+    })
+    } as any);
 
-   
-    const response = await getStaticProps({
-      params: { slug: 'my-new-post' }
-    } as any)
+   const response = await getStaticProps({ params: { slug: 'my-new-post' }})
 
-    expect(response).toEqual(
-      expect.objectContaining({
+expect(response).toEqual(
+    expect.objectContaining({
         props: {
-          post: {
-            slug: 'my-new-post',
-            title: "My new post",
-            content: "<p>Post content</p>",
-            updatedAt: "01 de abril de 2021"
-          }
+            post: {
+                slug: 'my-new-post',
+                title: 'My new post',
+                content: '<p>Post content</p>',
+                updatedAt: '01 de janeiro de 2021'
+            }
         }
-      })
-    )
-  })
-})
+    })
+)
+});
+});
