@@ -9,6 +9,10 @@ import {
   TaskInput
 } from './styles'
 
+
+// Controlled inputs são aqueles em que eu estarei monitorando em tempo real a digitação do usuário e consequentemente atualizando o novo estado a data alteração
+// Uncontrolled inputs são aqueles em que eu busco a informação digitada apenas num determinado momento. Com o clique do botão de "enviar", por exemplo
+
 export function Home() {
   return (
     <HomeContainer>
