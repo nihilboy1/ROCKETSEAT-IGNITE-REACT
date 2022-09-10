@@ -1,4 +1,5 @@
 import { Play } from 'phosphor-react'
+import { useForm } from 'react-hook-form'
 import {
   CountdownContainer,
   FormContainer,
@@ -9,17 +10,27 @@ import {
   TaskInput
 } from './styles'
 
-
 // Controlled inputs são aqueles em que eu estarei monitorando em tempo real a digitação do usuário e consequentemente atualizando o novo estado a data alteração
 // Uncontrolled inputs são aqueles em que eu busco a informação digitada apenas num determinado momento. Com o clique do botão de "enviar", por exemplo
 
 export function Home() {
+  const { register, handleSubmit, watch } = useForm()
+
+  function handleCreateNewCycle(data) {}
+
+  const task = watch('task')
+  const isSubmitDisabled = !task
   return (
     <HomeContainer>
-      <form action="">
+      <form action="" onSubmit={handleSubmit(handleCreateNewCycle)}>
         <FormContainer>
           <label htmlFor="task">Vou trabalhar em</label>
-          <TaskInput id="task" list='task-suggestions' placeholder="Dê um nome para a sua tarefa" />
+          <TaskInput
+            id="task"
+            list="task-suggestions"
+            placeholder="Dê um nome para a sua tarefa"
+            {...register('task')}
+          />
           <datalist id="task-suggestions">
             <option value="1"></option>
             <option value="2"></option>
@@ -34,6 +45,9 @@ export function Home() {
             step={5}
             min={5}
             max={60}
+            {...register('minutesAmount', {
+              valueAsNumber: true
+            })}
           />
           <span>minutos.</span>
         </FormContainer>
@@ -44,7 +58,7 @@ export function Home() {
           <span>0</span>
           <span>0</span>
         </CountdownContainer>
-        <StartCountdownButton type="submit">
+        <StartCountdownButton type="submit" disabled={isSubmitDisabled}>
           <Play size={24} />
           Começar
         </StartCountdownButton>
